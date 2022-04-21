@@ -782,6 +782,39 @@ def handle_tanh_layer(man, element, num_neurons, predecessors, num_predecessors,
         print('Problem with loading/calling "handle_tanh_layer" from "libfppoly.so"')
         print(inst)
         
+def handle_elu_layer(man, element, num_neurons, predecessors, num_predecessors, use_default_heuristic):
+    """
+    handle ELU layer
+    
+    Parameters
+    ----------
+    man : ElinaManagerPtr
+        Pointer to the ElinaManager.
+    element : ElinaAbstract0Ptr
+        Pointer to the abstract element
+    num_neurons: c_size_t
+        number of neurons
+    predecessors: POINTER(c_size_t)
+        the layers before the current layer
+    num_predecessors: c_size_t
+        the number of predecessors of the current layer
+    use_default_heuristic: c_bool
+        whether to use the default ELU approximation from POPL'19 (this parameter doesn't make sense anymore)
+    Returns
+    -------
+    None
+
+    """
+
+    try:
+        handle_elu_layer_c = fppoly_api.handle_elu_layer
+        handle_elu_layer_c.restype = None
+        handle_elu_layer_c.argtypes = [ElinaManagerPtr, ElinaAbstract0Ptr, c_size_t, POINTER(c_size_t), c_size_t, c_bool]
+        handle_elu_layer_c(man, element, num_neurons, predecessors, num_predecessors, use_default_heuristic)
+    except Exception as inst:
+        print('Problem with loading/calling "handle_elu_layer" from "libfppoly.so"')
+        print(inst)
+
         
 def handle_parabola_layer(man, element, num_neurons, predecessors, num_predecessors):
     """
