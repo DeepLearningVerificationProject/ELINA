@@ -28,6 +28,7 @@ extern "C" {
 #endif
 
 #include "backsubstitute.h"
+#include "elu.h"
 
 void handle_sigmoid_layer(elina_manager_t *man, elina_abstract0_t* element, size_t num_neurons, size_t *predecessors, size_t num_predecessors, bool use_default_heuristic);
 

@@ -322,6 +322,7 @@ void elina_double_interval_mul(double *a_inf, double *a_sup, double b_inf, doubl
 /* ====================================================================== */
 
 
+// Note(klinvill): I believe this calculates [a_inf; a_sup] = [b_inf; b_sup] / [c_inf; c_sup]
 void elina_double_interval_div(double *a_inf, double *a_sup, double b_inf, double b_sup, double c_inf, double c_sup)
 {
   if (c_inf<0){
